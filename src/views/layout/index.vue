@@ -1,10 +1,18 @@
 <script lang="ts" setup name="Layout">
-console.log('layout');
+import AppTopnav from './components/app-topnav.vue';
+import AppHeader from './components/app-header.vue';
+import AppFooter from './components/app-footer.vue';
+import AppHeaderSticky from './components/app-header-sticky.vue';
 
 </script>
+
 <template>
-  <div>顶部</div>
-  <div>导航</div>
-  <div>路由出口</div>
-  <div>底部</div>
+  <AppTopnav />
+  <AppHeader />
+  <AppHeaderSticky />
+  <div class="app-body">
+    <!-- 路由出口 -->
+    <router-view />
+  </div>
+  <AppFooter />
 </template>
