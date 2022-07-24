@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-23 09:09:02
- * @LastEditTime: 2022-07-24 10:53:11
+ * @LastEditTime: 2022-07-24 16:21:26
  * @LastEditors: Kasumi
  * @Description: 公共导航部分
  * @FilePath: \vite-project-xtx\src\views\layout\components\app-header-nav.vue
@@ -20,7 +20,7 @@ category.getCategoryList()
     <li class="home">
       <RouterLink to="/">首页</RouterLink>
     </li>
-    <li v-for="(item, index) in category.list" :key="index" @mouseenter="category.show(item.id)"
+    <li v-for="(item, index) in category.list" :key="index" @mousemove="category.show(item.id)"
       @mouseleave="category.hide(item.id)">
       <!-- 一级类目入口 -->
       <router-link :to="item.id ? `/category/${item.id}` : '/'" @click="category.hide(item.id)">{{ item.name }}

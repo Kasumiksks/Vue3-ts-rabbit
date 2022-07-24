@@ -50,3 +50,33 @@ export type SomeCategory = {
   picture: string
   children: CategoryItem[]
 }
+
+// 二级分类商品数据
+export type SaleProperty = {
+  id: string
+  name: string
+  properties: {
+    id: string
+    name: string
+  }[]
+}
+
+export type SubCategory = {
+  id: string
+  name: string
+  picture?: any
+  parentId: string
+  parentName: string
+  brands: {
+    id: string
+    name: string
+    nameEn: string
+    logo: string
+    picture: string
+    type?: any
+    desc: string
+    place: string
+  }[]
+  saleProperties: SaleProperty[]
+  goods: CategoryGoods[]
+}

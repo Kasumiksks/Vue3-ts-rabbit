@@ -3,14 +3,15 @@ import { defineStore } from "pinia";
 import { TResponse } from "@/types/data";
 import { CategoryItem } from "@/types/goods";
 import { topCategory } from '../constants'
-import { SomeCategory } from '@/types/goods'
+import { SomeCategory, SubCategory } from '@/types/goods'
 
 const defaultCategory = topCategory.map(item => ({ name: item }))
 
 export default defineStore('category', {
   state: () => ({
     list: defaultCategory as CategoryItem[],
-    someCategory: {} as SomeCategory
+    someCategory: {} as SomeCategory,
+    subCategory: {} as SubCategory
   }),
   actions: {
     async getCategoryList() {
@@ -32,6 +33,14 @@ export default defineStore('category', {
         }
       })
       this.someCategory = res.data.result
-    }
+    },
+    async getSubFilter(id: string) {
+      const res = await request.get<TResponse<SubCategory>>('/category/sub/filter', {
+        params: {
+          id
+        }
+      })
+      this.subCategory = res.data.result
+    },
   }
 })
