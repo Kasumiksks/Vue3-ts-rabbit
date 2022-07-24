@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-23 17:08:44
- * @LastEditTime: 2022-07-23 21:03:04
+ * @LastEditTime: 2022-07-24 15:24:06
  * @LastEditors: Kasumi
  * @Description: 轮播图组件
  * @FilePath: \vite-project-xtx\src\components\carousel\index.vue
@@ -19,7 +19,7 @@ const props = defineProps({
   },
   autoPlay: {
     type: Boolean,
-    default: true,
+    default: false,
   },
   duration: {
     type: Number,

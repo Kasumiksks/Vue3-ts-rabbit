@@ -42,3 +42,11 @@ export type GoodsHot = {
   title: string
   alt: string
 }
+
+// 某个分类下数据的类型
+export type SomeCategory = {
+  id: string
+  name: string
+  picture: string
+  children: CategoryItem[]
+}

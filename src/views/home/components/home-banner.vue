@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-23 14:57:09
- * @LastEditTime: 2022-07-23 21:08:26
+ * @LastEditTime: 2022-07-24 15:24:18
  * @LastEditors: Kasumi
  * @Description: 右侧轮播图模块
  * @FilePath: \vite-project-xtx\src\views\home\components\home-banner.vue
@@ -18,7 +18,7 @@ home.getBannerList()
 <template>
   <div class="home-banner">
     <!-- 轮播图 -->
-    <XtxCarousel :slides="home.bannerList" />
+    <XtxCarousel :slides="home.bannerList" auto-play />
   </div>
 </template>
 
