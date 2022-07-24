@@ -80,3 +80,41 @@ export type SubCategory = {
   saleProperties: SaleProperty[]
   goods: CategoryGoods[]
 }
+
+// 商品模块的类型声明
+export type GoodsInfo = {
+  id: string
+  brand: {
+    name: string
+  }
+  name: string
+  spuCode: string
+  desc: string
+  price: string
+  oldPrice: string
+  discount: number
+  inventory: number
+  salesCount: number
+  commentCount: number
+  collectCount: number
+  mainVideos: any[]
+  videoScale: number
+  mainPictures: string[]
+  isPreSale: boolean
+  isCollect?: any
+  recommends?: any
+  userAddresses?: any
+  evaluationInfo?: any
+  categories: {
+    id: string
+    name: string
+  }[]
+}
+
+// 城市列表类型
+export type AreaList = {
+  code: string
+  level: number
+  name: string
+  areaList: AreaList[]
+}

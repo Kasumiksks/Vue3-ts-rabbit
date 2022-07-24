@@ -29,6 +29,10 @@ const router = createRouter({
           path: '/goods/:id',
           component: () => import('@/views/goods/index.vue'),
         },
+        {// 商品详情
+          path: '/goods/:id',
+          component: () => import('@/views/goods/index.vue'),
+        },
       ]
     },
     {

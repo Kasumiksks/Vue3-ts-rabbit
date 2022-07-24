@@ -4,6 +4,7 @@ import XtxCarousel from './carousel/index.vue' // 轮播图组件
 import XtxMore from './more/index.vue' // 商品顶部样式组件
 import Bread from '@/components/bread/index.vue'    // 面包屑组件
 import BreadItem from '@/components/bread/item.vue' // 面包屑组件
+import XtxCity from '@/components/city/index.vue' // 城市选择组件
 
 
 import { App } from 'vue'
@@ -14,5 +15,6 @@ export default {
     app.component('XtxMore', XtxMore)
     app.component(Bread.name, Bread)
     app.component(BreadItem.name, BreadItem)
+    app.component(XtxCity.name, XtxCity)
   }
 }
