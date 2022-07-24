@@ -1,5 +1,14 @@
+<!--
+ * @Author: Kasumi
+ * @Date: 2022-07-23 09:09:02
+ * @LastEditTime: 2022-07-24 10:53:11
+ * @LastEditors: Kasumi
+ * @Description: 公共导航部分
+ * @FilePath: \vite-project-xtx\src\views\layout\components\app-header-nav.vue
+ * 你所热爱的, 就是你的生活
+-->
+
 <script lang="ts" setup name="AppHeaderNav">
-// 抽离导航部分为单独组件
 import useStore from '@/store';
 const { category } = useStore()
 

@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-23 18:16:59
- * @LastEditTime: 2022-07-23 21:15:56
+ * @LastEditTime: 2022-07-24 11:08:57
  * @LastEditors: Kasumi
  * @Description: 新鲜好物模块
  * @FilePath: \vite-project-xtx\src\views\home\components\home-new.vue
@@ -11,26 +11,35 @@
 <script lang="ts" setup>
 import useStore from '@/store';
 import HomePanel from './home-panel.vue'
+import { useLazyData } from '@/utils/hooks'
+import HomeSkeleton from './home-skeleton.vue';
 
 const { home } = useStore()
-home.getNewGoodsList()
+
+// 数据懒加载
+const target = useLazyData(home.getNewGoodsList)
 </script>
 <template>
   <div class="home-new">
-    <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
+    <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱" ref="target">
       <template #right>
         <XtxMore path="/" />
       </template>
       <!-- 面板内容 -->
-      <ul class="goods-list">
-        <li v-for="item in home.newGoodsList" :key="item.id">
-          <RouterLink :to="`/goods/${item.id}`">
-            <img :src=item.picture alt="" />
-            <p class="name ellipsis">{{ item.name }}</p>
-            <p class="price">&yen;{{ item.price }}</p>
-          </RouterLink>
-        </li>
-      </ul>
+      <!-- Transition : 动画 -->
+      <Transition name="fade">
+        <ul class="goods-list" v-if="home.newGoodsList.length > 0">
+          <li v-for="item in home.newGoodsList" :key="item.id">
+            <RouterLink :to="`/goods/${item.id}`">
+              <img :src=item.picture alt="" v-lazy="item.picture" />
+              <p class="name ellipsis">{{ item.name }}</p>
+              <p class="price">&yen;{{ item.price }}</p>
+            </RouterLink>
+          </li>
+        </ul>
+        <!-- 骨架屏 -->
+        <HomeSkeleton v-else />
+      </Transition>
     </HomePanel>
   </div>
 </template>

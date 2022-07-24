@@ -1,4 +1,13 @@
-<!-- 吸顶导航组件 -->
+<!--
+ * @Author: Kasumi
+ * @Date: 2022-07-23 14:21:46
+ * @LastEditTime: 2022-07-24 10:53:35
+ * @LastEditors: Kasumi
+ * @Description: 吸顶导航组件
+ * @FilePath: \vite-project-xtx\src\views\layout\components\app-header-sticky.vue
+ * 你所热爱的, 就是你的生活
+-->
+
 <script lang="ts" setup name="AppHeaderSticky">
 import AppHeaderNav from './app-header-nav.vue'
 

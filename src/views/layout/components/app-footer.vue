@@ -1,5 +1,14 @@
+<!--
+ * @Author: Kasumi
+ * @Date: 2022-07-23 09:12:17
+ * @LastEditTime: 2022-07-24 10:52:53
+ * @LastEditors: Kasumi
+ * @Description: 公共底部组件
+ * @FilePath: \vite-project-xtx\src\views\layout\components\app-footer.vue
+ * 你所热爱的, 就是你的生活
+-->
+
 <script lang="ts" setup name="AppFooter">
-// 底部子组件
 </script>
 
 <template>

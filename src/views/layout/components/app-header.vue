@@ -1,3 +1,13 @@
+<!--
+ * @Author: Kasumi
+ * @Date: 2022-07-23 09:03:23
+ * @LastEditTime: 2022-07-24 10:54:03
+ * @LastEditors: Kasumi
+ * @Description: 公共头部组件
+ * @FilePath: \vite-project-xtx\src\views\layout\components\app-header.vue
+ * 你所热爱的, 就是你的生活
+-->
+
 <script lang="ts" setup name="AppHeader">
 import AppHeaderNav from './app-header-nav.vue';
     //头部导航子组件

@@ -1,5 +1,14 @@
+<!--
+ * @Author: Kasumi
+ * @Date: 2022-07-21 15:56:36
+ * @LastEditTime: 2022-07-24 10:55:03
+ * @LastEditors: Kasumi
+ * @Description: 公共顶部通栏组件
+ * @FilePath: \vite-project-xtx\src\views\layout\components\app-topnav.vue
+ * 你所热爱的, 就是你的生活
+-->
+
 <script lang="ts" setup name="AppTopnav">
-// 顶部通栏子组件
 </script>
 
 <template>

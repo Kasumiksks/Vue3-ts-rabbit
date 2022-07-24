@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-23 21:08:34
- * @LastEditTime: 2022-07-23 21:11:39
+ * @LastEditTime: 2022-07-24 11:09:56
  * @LastEditors: Kasumi
  * @Description: 人气推荐模块
  * @FilePath: \vite-project-xtx\src\views\home\components\home-hot.vue
@@ -10,26 +10,35 @@
 <script lang="ts" setup name="HomeHot">
 import useStore from '@/store';
 import HomePanel from './home-panel.vue'
+import { useLazyData } from '@/utils/hooks'
+import HomeSkeleton from './home-skeleton.vue'
 
 const { home } = useStore()
-home.getHotGoodsList()
+const target = useLazyData(home.getHotGoodsList)
+// 数据懒加载
+
 </script>
 <template>
   <div class="home-hot">
-    <HomePanel title="人气推荐" sub-title="人气爆款 不容错过">
+    <HomePanel title="人气推荐" sub-title="人气爆款 不容错过" ref="target">
       <template #right>
         <XtxMore path="/" />
       </template>
       <!-- 面板内容 -->
-      <ul class="goods-list">
-        <li v-for="item in home.hotGoosList" :key="item.id">
-          <RouterLink :to="`/goods/${item.id}`">
-            <img :src=item.picture alt="" />
-            <p class="name ellipsis">{{ item.title }}</p>
-            <p class="price">{{ item.alt }}</p>
-          </RouterLink>
-        </li>
-      </ul>
+      <!-- Transition : 动画 -->
+      <Transition name="fade">
+        <ul class="goods-list" v-if="home.hotGoosList.length > 0">
+          <li v-for="item in home.hotGoosList" :key="item.id">
+            <RouterLink :to="`/goods/${item.id}`">
+              <img :src=item.picture alt="" v-lazy="item.picture" />
+              <p class="name ellipsis">{{ item.title }}</p>
+              <p class="price">{{ item.alt }}</p>
+            </RouterLink>
+          </li>
+        </ul>
+        <!-- 骨架屏 -->
+        <HomeSkeleton v-else />
+      </Transition>
     </HomePanel>
   </div>
 </template>

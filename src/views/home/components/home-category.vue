@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-23 14:56:31
- * @LastEditTime: 2022-07-23 20:41:44
+ * @LastEditTime: 2022-07-24 10:56:06
  * @LastEditors: Kasumi
  * @Description: 左侧分类组件
  * @FilePath: \vite-project-xtx\src\views\home\components\home-category.vue
@@ -37,12 +37,12 @@ const goods = computed(() => {
         <!-- 一级分类 -->
         <RouterLink :to="item.id ? `/category/${item.id}` : '/'">{{ item.name }}</RouterLink>
         <!-- 二级分类 -->
-        <template v-if="item.children">
-          <RouterLink :to="`/category/sub/${sub.id}`" v-for="sub in item.children?.slice(0, 2)" class="submenu"> {{
-              sub.name
-          }}
-          </RouterLink>
-        </template>
+        <!-- <template v-if="item.children"> -->
+        <RouterLink :to="`/category/sub/${sub.id}`" v-for="sub in item.children?.slice(0, 2)" class="submenu"> {{
+            sub.name
+        }}
+        </RouterLink>
+        <!-- </template> -->
 
         <!-- 骨架屏 -->
         <!-- <template v-else>
