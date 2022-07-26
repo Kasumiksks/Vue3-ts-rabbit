@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-24 17:01:45
- * @LastEditTime: 2022-07-26 16:51:33
+ * @LastEditTime: 2022-07-26 19:45:31
  * @LastEditors: Kasumi
  * @Description: 商品详情页面
  * @FilePath: \vite-project-xtx\src\views\goods\index.vue
@@ -10,7 +10,7 @@
 
 <script lang="ts" setup name="Goods">
 import useStore from '@/store';
-import { watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import GoodsImage from '../goods/components/goods-image.vue'
 import GoodsSale from '../goods/components/goods-sale.vue'
@@ -44,6 +44,7 @@ const changeSku = (skuId: string) => {
     goods.info.oldPrice = sku.oldPrice
   }
 }
+let count = ref(1)
 </script>
 <template>
   <div class="xtx-goods-page">
@@ -68,6 +69,9 @@ const changeSku = (skuId: string) => {
             <GoodsInfo :goods="goods.info" />
             <!-- 商品规格 -->
             <GoodsSku :goods="goods.info" skuId="1369155864430120962" @changeSku="changeSku" />
+            <!-- 数字选择框 -->
+            <XtxNumbox v-model="count" />
+
           </div>
         </div>
         <!-- 商品详情 -->

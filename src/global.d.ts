@@ -5,6 +5,7 @@ import XtxMore from '@/components/more/index.vue'
 import Bread from '@/components/bread/index.vue'
 import BreadItem from '@/components/bread/item.vue'
 import XtxCity from '@/components/city/index.vue'
+import XtxNumbox from '@/components/numbox/index.vue'
 
 declare module 'vue' {
   export interface GlobalComponents {
@@ -14,6 +15,7 @@ declare module 'vue' {
     Bread: typeof Bread
     BreadItem: typeof BreadItem
     XtxCity: typeof XtxCity
+    XtxNumbox: typeof XtxNumbox
   }
 }
 export { }
