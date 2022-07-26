@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-24 17:01:45
- * @LastEditTime: 2022-07-24 18:14:44
+ * @LastEditTime: 2022-07-26 16:51:33
  * @LastEditors: Kasumi
  * @Description: 商品详情页面
  * @FilePath: \vite-project-xtx\src\views\goods\index.vue
@@ -15,6 +15,7 @@ import { useRoute } from 'vue-router';
 import GoodsImage from '../goods/components/goods-image.vue'
 import GoodsSale from '../goods/components/goods-sale.vue'
 import GoodsInfo from '../goods/components/goods-info.vue'
+import GoodsSku from './components/goods-sku.vue';
 
 const route = useRoute()
 const { goods } = useStore()
@@ -26,6 +27,23 @@ watchEffect(() => {
   }
 })
 
+watchEffect(() => {
+  const id = route.params.id as string
+  if (route.fullPath === `/goods/${id}`) {
+    goods.resetGoodsInfo()
+    goods.getGoodsInfo(id)
+  }
+})
+
+// 默认选中
+const changeSku = (skuId: string) => {
+  const sku = goods.info.skus.find((item) => item.id === skuId)
+  if (sku) {
+    goods.info.inventory = sku.inventory
+    goods.info.price = sku.price
+    goods.info.oldPrice = sku.oldPrice
+  }
+}
 </script>
 <template>
   <div class="xtx-goods-page">
@@ -48,6 +66,8 @@ watchEffect(() => {
           </div>
           <div class="spec">
             <GoodsInfo :goods="goods.info" />
+            <!-- 商品规格 -->
+            <GoodsSku :goods="goods.info" skuId="1369155864430120962" @changeSku="changeSku" />
           </div>
         </div>
         <!-- 商品详情 -->

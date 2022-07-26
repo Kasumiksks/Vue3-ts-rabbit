@@ -17,6 +17,9 @@ export default defineStore('goods', {
       })
       console.log(res);
       this.info = res.data.result
-    }
+    },
+    resetGoodsInfo() {
+      this.info = {} as GoodsInfo
+    },
   }
 })

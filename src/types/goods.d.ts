@@ -109,6 +109,8 @@ export type GoodsInfo = {
     id: string
     name: string
   }[]
+  specs: Spec[]
+  skus: Sku[]
 }
 
 // 城市列表类型
@@ -117,4 +119,31 @@ export type AreaList = {
   level: number
   name: string
   areaList: AreaList[]
+}
+
+// 商品的规格的值的类型
+export type SpecValue = {
+  desc: string
+  name: string
+  picture: string
+  selected: boolean // 控制选中与否
+  disabled: boolean // 控制禁用与否
+}
+// 商品的规格类型
+export type Spec = {
+  name: string
+  values: SpecValue[]
+}
+
+// 数据中的 SKU 也需要有类型
+export type Sku = {
+  id: string
+  inventory: number
+  oldPrice: string
+  price: string
+  skuCode: string
+  specs: {
+    name: string
+    valueName: string
+  }[]
 }
