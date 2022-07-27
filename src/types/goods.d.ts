@@ -111,6 +111,7 @@ export type GoodsInfo = {
   }[]
   specs: Spec[]
   skus: Sku[]
+  details: GoodsDetail
 }
 
 // 城市列表类型
@@ -145,5 +146,14 @@ export type Sku = {
   specs: {
     name: string
     valueName: string
+  }[]
+}
+
+// 商品详情
+type GoodsDetail = {
+  pictures: string[]
+  properties: {
+    name: string
+    value: string
   }[]
 }
