@@ -7,6 +7,7 @@ import BreadItem from '@/components/bread/item.vue' // 面包屑组件
 import XtxCity from '@/components/city/index.vue' // 城市选择组件
 import XtxNumbox from '@/components/numbox/index.vue' // 数量选择组件
 import XtxButton from '@/components/button/index.vue' // 按钮组件
+import XtxCheckbox from '@/components/checkbox/index.vue' // 登录页面的多选框组件
 
 
 import { App } from 'vue'
@@ -20,5 +21,6 @@ export default {
     app.component(XtxCity.name, XtxCity)
     app.component(XtxNumbox.name, XtxNumbox)
     app.component(XtxButton.name, XtxButton)
+    app.component(XtxCheckbox.name, XtxCheckbox)
   }
 }
