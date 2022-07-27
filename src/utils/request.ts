@@ -1,4 +1,5 @@
-import axios from 'axios'
+import Message from '@/components/message'
+import axios, { AxiosError } from 'axios'
 
 // 备用接口地址: http://pcapi-xiaotuxian-front-devtest.itheima.net/
 const request = axios.create({
@@ -23,8 +24,15 @@ request.interceptors.response.use(
   function (response) {
     return response
   },
-  function (error) {
-    // 对响应错误做点什么
+  function (error: AxiosError<{ message: string, code: string }>) {
+    // 泛型表示 error.response.data 的类型
+    if (!error.response) {
+      Message.error('网络异常,请稍后重试')
+    } else {
+      // 这里同意配置提示后, 真正发请求的 catch 那儿就不必再写提示了
+      // 除非有特殊的情况, 当catch 那里也有 Message.error 的时候会覆盖这里
+      Message.error(error.response.data.message)
+    }
     return Promise.reject(error)
   }
 )
