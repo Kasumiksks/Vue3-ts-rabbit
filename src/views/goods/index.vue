@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-24 17:01:45
- * @LastEditTime: 2022-07-26 19:45:31
+ * @LastEditTime: 2022-07-27 09:43:21
  * @LastEditors: Kasumi
  * @Description: 商品详情页面
  * @FilePath: \vite-project-xtx\src\views\goods\index.vue
@@ -71,7 +71,8 @@ let count = ref(1)
             <GoodsSku :goods="goods.info" skuId="1369155864430120962" @changeSku="changeSku" />
             <!-- 数字选择框 -->
             <XtxNumbox v-model="count" />
-
+            <!-- 按钮组件 -->
+            <XtxButton style="margin-top: 20px" :class="['middle', 'primary']" />
           </div>
         </div>
         <!-- 商品详情 -->
