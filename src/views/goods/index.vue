@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-24 17:01:45
- * @LastEditTime: 2022-07-27 10:07:41
+ * @LastEditTime: 2022-07-27 10:40:25
  * @LastEditors: Kasumi
  * @Description: 商品详情页面
  * @FilePath: \vite-project-xtx\src\views\goods\index.vue
@@ -17,6 +17,7 @@ import GoodsSale from '../goods/components/goods-sale.vue'
 import GoodsInfo from '../goods/components/goods-info.vue'
 import GoodsSku from './components/goods-sku.vue';
 import GoodsDetail from './components/goods-detail.vue';
+import GoodsHot from './components/goods-hot.vue';
 
 const route = useRoute()
 const { goods } = useStore()
@@ -86,7 +87,9 @@ let count = ref(1)
             </div>
           </div>
           <!-- 24热榜+专题推荐 -->
-          <div class="goods-aside"></div>
+          <div class="goods-aside">
+            <GoodsHot />
+          </div>
         </div>
       </div>
 
@@ -105,7 +108,11 @@ let count = ref(1)
             <div class="goods-tabs"></div>
           </div>
           <!-- 24热榜+专题推荐 -->
-          <div class="goods-aside"></div>
+          <div class="goods-aside">
+            <GoodsHot :type="1" />
+            <GoodsHot :type="2" />
+            <GoodsHot :type="3" />
+          </div>
         </div>
       </div>
     </div>
