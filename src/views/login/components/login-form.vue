@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-27 11:06:17
- * @LastEditTime: 2022-07-27 20:57:47
+ * @LastEditTime: 2022-07-29 10:54:05
  * @LastEditors: Kasumi
  * @Description: 登录页面的表单组件
  * @FilePath: \vite-project-xtx\src\views\login\components\login-form.vue
@@ -24,7 +24,9 @@ const { validate, resetForm } = useForm({
   initialValues: { // 设置默认值
     account: 'xiaotuxian001',
     password: '123456',
-    isAgree: true
+    isAgree: true,
+    mobile: '13312345678',
+    code: ''
   },
   validationSchema: { // 校验规则
     account(value: string) {
@@ -86,20 +88,23 @@ const send = async () => {
   start()
 }
 
-////////////////////////////////////////////////
 const login = async () => {
   // 表单校验
   const res = await validate()
   // if (!res.valid) return
   try {
-    await user.login(account.value, password.value)
-    Message.success('登录成功')
+    if (type.value === 'account') {
+      if (res.errors.account || res.errors.password || res.errors.isAgree) return
+      await user.login(account.value, password.value)
+    } else {
+      if (res.errors.mobile || res.errors.code || res.errors.isAgree) return
+      await user.mobileLogin(mobile.value, code.value)
+    } Message.success('登录成功')
     router.push('/')
   } catch (error) {
     Message.error('用户名或密码错误!')
   }
 }
-////////////////////////////////////////////////
 
 </script>
 <template>

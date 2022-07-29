@@ -1,6 +1,7 @@
 import { TResponse } from "@/types/data";
 import { Profile } from "@/types/user";
 import request from "@/utils/request";
+import { setProfile } from "@/utils/storage";
 import { defineStore } from "pinia";
 
 export default defineStore('user', {
@@ -15,6 +16,8 @@ export default defineStore('user', {
         password
       })
       this.profile = res.data.result
+      // 持久化存储信息
+      setProfile(this.profile)
     },
     // 获取手机验证码
     async sendMobileMsg(mobile: string) {
@@ -31,6 +34,8 @@ export default defineStore('user', {
         code
       })
       this.profile = res.data.result
+      // 持久化存储信息
+      setProfile(this.profile)
     },
   }
 })
