@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-27 11:06:17
- * @LastEditTime: 2022-07-29 10:54:05
+ * @LastEditTime: 2022-07-29 16:15:33
  * @LastEditors: Kasumi
  * @Description: 登录页面的表单组件
  * @FilePath: \vite-project-xtx\src\views\login\components\login-form.vue
@@ -9,11 +9,12 @@
 -->
 <script lang="ts" setup name="LoginForm">
 import Message from '@/components/message';
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import useStore from '@/store'
 import router from '@/router';
 import { useField, useForm } from 'vee-validate' // 表单校验的工具包
 import { useCountDown } from '@/hooks/index' // 引入倒计时组件
+import { accountRule, codeRule, isAgreeRule, mobileRule, passwordRule } from '@/utils/validate'; // 引入校验规则
 
 const { user } = useStore()
 
@@ -29,34 +30,11 @@ const { validate, resetForm } = useForm({
     code: ''
   },
   validationSchema: { // 校验规则
-    account(value: string) {
-      // value 是将来使用该规则的表单元素的值
-
-      if (!value) return '请输入用户名'
-      if (!/^[a-zA-Z]\w{5,19}$/.test(value)) return '字母开头且6-20个字符'
-
-      // 如何反馈校验成功还是失败，返回 true 才是成功，其他情况失败，返回失败原因。
-      return true
-    },
-    password(value: string) {
-      if (!value) return '请输入密码'
-      if (!/^\w{6,12}$/.test(value)) return '密码必须是6-24位字符'
-      return true
-    },
-    isAgree(value: boolean) {
-      if (!value) return '请同意协议'
-      return true
-    },
-    mobile(value: string) {
-      if (!value) return '请输入手机号'
-      if (!/^1[3-9]\d{9}$/.test(value)) return '手机号格式错误'
-      return true
-    },
-    code(value: string) {
-      if (!value) return '请输入验证码'
-      if (!/^\d{6}$/.test(value)) return '验证码格式错误'
-      return true
-    },
+    account: accountRule,
+    mobile: mobileRule,
+    code: codeRule,
+    password: passwordRule,
+    isAgree: isAgreeRule
   }
 })
 
@@ -106,7 +84,13 @@ const login = async () => {
   }
 }
 
+onMounted(() => {
+  ; (QC.Login as loginFn)({
+    btnId: 'qqLoginBtn',
+  })
+})
 </script>
+
 <template>
   <div class="account-box">
     <div class="toggle">
@@ -167,7 +151,12 @@ const login = async () => {
       <a href="javascript:;" class="btn" @click="login">登录</a>
     </div>
     <div class="action">
-      <img src="https://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_7.png" alt="" />
+      <!-- QQ登录 -->
+      <!-- <span id="qqLoginBtn"></span> -->
+      <!-- 当前页面打开 -->
+      <a
+        href="https://graph.qq.com/oauth2.0/authorize?client_id=100556005&amp;response_type=token&amp;scope=all&amp;redirect_uri=http%3A%2F%2Fwww.corho.com%3A8080%2F%23%2Flogin%2Fcallback"><img
+          src="https://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_7.png" alt="QQ登录" border="0" /></a>
       <div class="url">
         <a href="javascript:;">忘记密码</a>
         <a href="javascript:;">免费注册</a>

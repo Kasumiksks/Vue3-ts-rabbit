@@ -19,7 +19,12 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    // QQ 三方登录的回调uri为：http://www.corho.com:8080/#/login/callback
+    // vite 中配置：www.corho.com:8080
+    host: 'www.corho.com',
+    port: 8080,
+    // open: true,
+    // cors: true, // 允许开发时 AJAX 跨域
   },
 
   // 自动导入 less 变量 和 mixins
@@ -34,3 +39,4 @@ export default defineConfig({
     },
   },
 })
+
