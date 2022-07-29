@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-21 15:56:36
- * @LastEditTime: 2022-07-27 16:48:49
+ * @LastEditTime: 2022-07-29 10:59:12
  * @LastEditors: Kasumi
  * @Description: 公共顶部通栏组件
  * @FilePath: \vite-project-xtx\src\views\layout\components\app-topnav.vue
@@ -9,9 +9,17 @@
 -->
 
 <script lang="ts" setup name="AppTopnav">
+import Message from '@/components/message';
+import router from '@/router';
 import useStore from '@/store';
 
 const { user } = useStore()
+
+const logout = () => {
+  user.logout()
+  router.push('/login')
+  Message.success('退出成功')
+} 
 </script>
 
 <template>
@@ -24,7 +32,7 @@ const { user } = useStore()
                 || user.profile.account
             }}</a>
           </li>
-          <li><a href="javascript:;">退出登录</a></li>
+          <li><a href="javascript:;" @click="logout">退出登录</a></li>
         </template>
         <template v-else>
           <li>

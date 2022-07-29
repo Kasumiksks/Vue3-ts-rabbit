@@ -1,12 +1,12 @@
 import { TResponse } from "@/types/data";
 import { Profile } from "@/types/user";
 import request from "@/utils/request";
-import { setProfile } from "@/utils/storage";
+import { getProfile, removeProfile, setProfile } from "@/utils/storage";
 import { defineStore } from "pinia";
 
 export default defineStore('user', {
   state: () => ({
-    profile: {} as Profile
+    profile: getProfile() as Profile
   }),
   actions: {
     // 用户名密码登录
@@ -37,5 +37,10 @@ export default defineStore('user', {
       // 持久化存储信息
       setProfile(this.profile)
     },
+    // 退出登录
+    logout() {
+      this.profile = {} as Profile
+      removeProfile()
+    }
   }
 })
