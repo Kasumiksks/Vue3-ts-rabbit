@@ -33,6 +33,10 @@ const router = createRouter({
           path: '/goods/:id',
           component: () => import('@/views/goods/index.vue'),
         },
+        {// 购物车页面
+          path: '/cart',
+          component: () => import('@/views/cart/index.vue')
+        }
       ]
     },
     {

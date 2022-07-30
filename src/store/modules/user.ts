@@ -3,6 +3,7 @@ import { Profile } from "@/types/user";
 import request from "@/utils/request";
 import { getProfile, removeProfile, setProfile } from "@/utils/storage";
 import { defineStore } from "pinia";
+import useStore from "..";
 
 export default defineStore('user', {
   state: () => ({
@@ -44,6 +45,8 @@ export default defineStore('user', {
     logout() {
       this.profile = {} as Profile
       removeProfile()
+      const { cart } = useStore()
+      cart.clearCart() // 清空购物车
     },
 
     //  source: 1 为 pc，2 为 webapp，3 为微信小程序, 4 为 Android, 5 为 ios, 6 为 qq, 7 为微信

@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-27 09:19:21
- * @LastEditTime: 2022-07-27 09:41:40
+ * @LastEditTime: 2022-07-30 11:34:00
  * @LastEditors: Kasumi
  * @Description: 按钮组件
  * @FilePath: \vite-project-xtx\src\components\button\index.vue
@@ -26,7 +26,9 @@ defineProps({
 })
 </script>
 <template>
-  <button class="xtx-button ellipsis" :class="[size, type]" @click="emit('click', $event)">购物车</button>
+  <button class="xtx-button ellipsis" :class="[size, type]" @click="emit('click', $event)">
+    <slot />
+  </button>
 </template>
 
 <style scoped lang="less">

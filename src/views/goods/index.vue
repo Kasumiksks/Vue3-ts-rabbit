@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-24 17:01:45
- * @LastEditTime: 2022-07-30 10:03:35
+ * @LastEditTime: 2022-07-30 16:40:12
  * @LastEditors: Kasumi
  * @Description: 商品详情页面
  * @FilePath: \vite-project-xtx\src\views\goods\index.vue
@@ -19,6 +19,7 @@ import GoodsSku from './components/goods-sku.vue';
 import GoodsDetail from './components/goods-detail.vue';
 import GoodsHot from './components/goods-hot.vue';
 import Message from '@/components/message';
+import { CartItem } from '@/types/cart';
 
 const route = useRoute()
 const { goods, cart } = useStore()
@@ -57,12 +58,23 @@ const addCart = async () => {
   // 如果没有 skuId 就打回去
   if (!currentSkuId.value) Message.warning('请选择完整信息')
 
+  const sku = goods.info.skus.find((item) => item.id === currentSkuId.value)!
+  const attrsText = sku.specs.map((item) => item.name + ':' + item.valueName).join(' ')
+  // 未登录状态需要传入整个数据
   await cart.addCart({
     skuId: currentSkuId.value,
     count: count.value,
-  })
-
-  Message.success('添加到购物车成功')
+    id: goods.info.id,
+    name: goods.info.name,
+    picture: goods.info.mainPictures[0],
+    price: goods.info.price,
+    attrsText,
+    selected: true,
+    nowPrice: goods.info.price,
+    stock: goods.info.inventory,
+    isEffective: true,
+  } as CartItem)
+  Message.success('加入购物车成功')
   console.log('加入购物车')
 }
 </script>
@@ -92,7 +104,9 @@ const addCart = async () => {
             <!-- 数字选择框 -->
             <XtxNumbox v-model="count" />
             <!-- 按钮组件 -->
-            <XtxButton style="margin-top: 20px" :class="['middle', 'primary']" @click="addCart" />
+            <XtxButton style="margin-top: 20px" :class="['middle', 'primary']" @click="addCart">
+              <slot>加入购物车</slot>
+            </XtxButton>
           </div>
         </div>
         <!-- 商品详情 -->

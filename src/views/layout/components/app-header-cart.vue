@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-30 10:35:07
- * @LastEditTime: 2022-07-30 11:02:22
+ * @LastEditTime: 2022-07-30 11:34:27
  * @LastEditors: Kasumi
  * @Description: 头部购物车组件
  * @FilePath: \vite-project-xtx\src\views\layout\components\app-header-cart.vue
@@ -16,7 +16,8 @@ cart.getCartList()
 
 <template>
   <div class="cart">
-    <a class="curr" href="javascript:;"> <i class="iconfont icon-cart"></i><em>{{ cart.effectiveListCounts }}</em> </a>
+    <RouterLink to="/cart" class="curr"><i class="iconfont icon-cart"></i><em>{{ cart.effectiveListCounts }}</em>
+    </RouterLink>
     <!-- 购物车没有数据时不必显示 -->
     <div class="layer" v-if="cart.effectiveList.length && $route.path !== '/cart'">
       <div class="list">
@@ -40,7 +41,9 @@ cart.getCartList()
           <p>共 {{ cart.effectiveListCounts }} 件商品</p>
           <p>&yen;{{ cart.effectiveListPrice }}</p>
         </div>
-        <XtxButton type="plain">去购物车结算</XtxButton>
+        <XtxButton type="plain" @click="$router.push('/cart')">
+          <slot>去购物车结算</slot>
+        </XtxButton>
       </div>
     </div>
   </div>

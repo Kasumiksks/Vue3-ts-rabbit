@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-27 11:06:17
- * @LastEditTime: 2022-07-29 16:15:33
+ * @LastEditTime: 2022-07-30 19:41:51
  * @LastEditors: Kasumi
  * @Description: 登录页面的表单组件
  * @FilePath: \vite-project-xtx\src\views\login\components\login-form.vue
@@ -16,7 +16,7 @@ import { useField, useForm } from 'vee-validate' // 表单校验的工具包
 import { useCountDown } from '@/hooks/index' // 引入倒计时组件
 import { accountRule, codeRule, isAgreeRule, mobileRule, passwordRule } from '@/utils/validate'; // 引入校验规则
 
-const { user } = useStore()
+const { user, cart } = useStore()
 
 const type = ref<'account' | 'mobile'>('account')
 
@@ -72,12 +72,17 @@ const login = async () => {
   // if (!res.valid) return
   try {
     if (type.value === 'account') {
+      // 账号登录
       if (res.errors.account || res.errors.password || res.errors.isAgree) return
       await user.login(account.value, password.value)
     } else {
+      // 验证码登录
       if (res.errors.mobile || res.errors.code || res.errors.isAgree) return
       await user.mobileLogin(mobile.value, code.value)
-    } Message.success('登录成功')
+    }
+    // 登录成功后，合并购物车
+    cart.mergeLocalCart()
+    Message.success('登录成功')
     router.push('/')
   } catch (error) {
     Message.error('用户名或密码错误!')
