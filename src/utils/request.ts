@@ -1,4 +1,5 @@
 import Message from '@/components/message'
+import useStore from '@/store'
 import axios, { AxiosError } from 'axios'
 
 // 备用接口地址: http://pcapi-xiaotuxian-front-devtest.itheima.net/
@@ -10,6 +11,11 @@ const request = axios.create({
 // 添加请求拦截器
 request.interceptors.request.use(
   function (config) {
+    // 统一携带token
+    const { user } = useStore()
+    if (user.profile.token) {
+      config.headers!.Authorization = `Bearer ${user.profile.token}`
+    }
     // 在发送请求之前做些什么
     return config
   },

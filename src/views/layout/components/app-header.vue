@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-23 09:03:23
- * @LastEditTime: 2022-07-24 10:54:03
+ * @LastEditTime: 2022-07-30 10:36:37
  * @LastEditors: Kasumi
  * @Description: 公共头部组件
  * @FilePath: \vite-project-xtx\src\views\layout\components\app-header.vue
@@ -10,6 +10,7 @@
 
 <script lang="ts" setup name="AppHeader">
 import AppHeaderNav from './app-header-nav.vue';
+import AppHeaderCart from './app-header-cart.vue';
     //头部导航子组件
 </script>
 
@@ -24,9 +25,7 @@ import AppHeaderNav from './app-header-nav.vue';
         <i class="iconfont icon-search"></i>
         <input type="text" placeholder="搜一搜" />
       </div>
-      <div class="cart">
-        <a class="curr" href="#"> <i class="iconfont icon-cart"></i><em>2</em> </a>
-      </div>
+      <AppHeaderCart />
     </div>
   </header>
 </template>

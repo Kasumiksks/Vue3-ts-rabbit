@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-26 10:07:05
- * @LastEditTime: 2022-07-26 16:52:22
+ * @LastEditTime: 2022-07-30 09:55:46
  * @LastEditors: Kasumi
  * @Description: 商品详情的选择功能的子组件
  * @FilePath: \vite-project-xtx\src\views\goods\components\goods-sku.vue
@@ -37,6 +37,9 @@ const changeState = (btnObj: SpecValue, spec: Spec) => {
     const [skuId] = pathMap[key]
     // 3. 子传父，给父组件
     emit('changeSku', skuId)
+  }
+  else {
+    emit('changeSku', '')
   }
 }
 

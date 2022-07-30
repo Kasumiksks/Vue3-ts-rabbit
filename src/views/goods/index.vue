@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-24 17:01:45
- * @LastEditTime: 2022-07-27 10:40:25
+ * @LastEditTime: 2022-07-30 10:03:35
  * @LastEditors: Kasumi
  * @Description: 商品详情页面
  * @FilePath: \vite-project-xtx\src\views\goods\index.vue
@@ -18,9 +18,10 @@ import GoodsInfo from '../goods/components/goods-info.vue'
 import GoodsSku from './components/goods-sku.vue';
 import GoodsDetail from './components/goods-detail.vue';
 import GoodsHot from './components/goods-hot.vue';
+import Message from '@/components/message';
 
 const route = useRoute()
-const { goods } = useStore()
+const { goods, cart } = useStore()
 
 watchEffect(() => {
   const id = route.params.id as string
@@ -39,6 +40,9 @@ watchEffect(() => {
 
 // 默认选中
 const changeSku = (skuId: string) => {
+  // 1. 根据接收到的 skuId 找到对应的 sku
+  // 2. 修改商品的价钱库存
+  currentSkuId.value = skuId
   const sku = goods.info.skus.find((item) => item.id === skuId)
   if (sku) {
     goods.info.inventory = sku.inventory
@@ -47,6 +51,20 @@ const changeSku = (skuId: string) => {
   }
 }
 let count = ref(1)
+
+const currentSkuId = ref('')
+const addCart = async () => {
+  // 如果没有 skuId 就打回去
+  if (!currentSkuId.value) Message.warning('请选择完整信息')
+
+  await cart.addCart({
+    skuId: currentSkuId.value,
+    count: count.value,
+  })
+
+  Message.success('添加到购物车成功')
+  console.log('加入购物车')
+}
 </script>
 <template>
   <div class="xtx-goods-page">
@@ -74,7 +92,7 @@ let count = ref(1)
             <!-- 数字选择框 -->
             <XtxNumbox v-model="count" />
             <!-- 按钮组件 -->
-            <XtxButton style="margin-top: 20px" :class="['middle', 'primary']" />
+            <XtxButton style="margin-top: 20px" :class="['middle', 'primary']" @click="addCart" />
           </div>
         </div>
         <!-- 商品详情 -->
