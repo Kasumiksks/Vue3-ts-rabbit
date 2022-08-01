@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Layout from '@/views/layout/index.vue'
 import Home from '@/views/home/index.vue'
+import useStore from '@/store'
 const router = createRouter({
   history: createWebHashHistory(),
   scrollBehavior: () => { // 在路由切换或刷新的时候，滚动到页面最顶部
@@ -36,6 +37,10 @@ const router = createRouter({
         {// 购物车页面
           path: '/cart',
           component: () => import('@/views/cart/index.vue')
+        },
+        {// 订单结算页面
+          path: '/member/checkout',
+          component: () => import('@/views/member/pay/checkout.vue')
         }
       ]
     },
@@ -48,5 +53,28 @@ const router = createRouter({
       component: () => import('@/views/login/callback.vue')
     }
   ],
+})
+
+// 配置路由导航守卫，拦截 /member 开头的所有的地址
+router.beforeEach((to, from, next) => {
+  // 判断用户是否登录
+  const { cart } = useStore()
+  if (cart.isLogin) {
+    next()
+  }
+  else {
+    if (to.path.includes('/member')) {
+      next({
+        path: '/login',
+        // 增加回跳的url地址
+        query: {
+          redirectUrl: to.fullPath
+        }
+      })
+    }
+    else {
+      next()
+    }
+  }
 })
 export default router

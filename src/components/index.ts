@@ -9,6 +9,7 @@ import XtxNumbox from '@/components/numbox/index.vue' // 数量选择组件
 import XtxButton from '@/components/button/index.vue' // 按钮组件
 import XtxCheckbox from '@/components/checkbox/index.vue' // 登录页面的多选框组件
 import XtxMessage from '@/components/message/message.vue' // 消息提示组件
+import XtxDialog from '@/components/dialog/index.vue' // 购物车结算界面的对话框组件
 
 
 import { App } from 'vue'
@@ -24,5 +25,6 @@ export default {
     app.component(XtxButton.name, XtxButton)
     app.component(XtxCheckbox.name, XtxCheckbox)
     app.component(XtxMessage.name, XtxMessage)
+    app.component('XtxDialog', XtxDialog)
   }
 }

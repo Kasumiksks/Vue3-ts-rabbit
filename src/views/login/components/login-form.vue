@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-27 11:06:17
- * @LastEditTime: 2022-07-30 19:41:51
+ * @LastEditTime: 2022-08-01 11:43:04
  * @LastEditors: Kasumi
  * @Description: 登录页面的表单组件
  * @FilePath: \vite-project-xtx\src\views\login\components\login-form.vue
@@ -15,8 +15,10 @@ import router from '@/router';
 import { useField, useForm } from 'vee-validate' // 表单校验的工具包
 import { useCountDown } from '@/hooks/index' // 引入倒计时组件
 import { accountRule, codeRule, isAgreeRule, mobileRule, passwordRule } from '@/utils/validate'; // 引入校验规则
+import { useRoute } from 'vue-router';
 
 const { user, cart } = useStore()
+const route = useRoute()
 
 const type = ref<'account' | 'mobile'>('account')
 
@@ -82,18 +84,21 @@ const login = async () => {
     }
     // 登录成功后，合并购物车
     cart.mergeLocalCart()
+    // 通过第三方登录，跳转到首页
     Message.success('登录成功')
-    router.push('/')
+    const redirectUrl = (route.query.redirectUrl as string) || '/'
+    router.push(redirectUrl)
+    // router.push('/')
   } catch (error) {
     Message.error('用户名或密码错误!')
   }
 }
 
-onMounted(() => {
-  ; (QC.Login as loginFn)({
-    btnId: 'qqLoginBtn',
-  })
-})
+// onMounted(() => {
+//   ; (QC.Login as loginFn)({
+//     btnId: 'qqLoginBtn',
+//   })
+// })
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 <script setup lang="ts" name="Cart">
 import Confirm from '@/components/confirm';
 import Message from '@/components/message';
+import router from '@/router';
 import useStore from '@/store'
 
 const { cart } = useStore()
@@ -30,6 +31,12 @@ const changeCount = (skuId: string, count: number) => {
   cart.updateCart(skuId, {
     count,
   })
+}
+
+// 去结算
+const goCheckout = () => {
+  if (cart.selectedList.length === 0) return Message.error('没有选中的商品!')
+  router.push('/member/checkout')
 }
 </script>
 
@@ -97,7 +104,7 @@ const changeCount = (skuId: string, count: number) => {
         <div class="total">
           共 {{ cart.effectiveListCounts }} 件有效商品，已选择 {{ cart.selectedListCounts }} 件，商品合计：
           <span class="red">¥{{ cart.selectedListPrice }}</span>
-          <XtxButton type="primary">
+          <XtxButton type="primary" @click="goCheckout">
             <slot>下单结算</slot>
           </XtxButton>
         </div>
