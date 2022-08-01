@@ -11,6 +11,7 @@
   "dependencies": {
     "@vueuse/core": "^8.9.4",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.4",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.16",
     "pinia-plugin-persistedstate": "^1.6.3",

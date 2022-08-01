@@ -41,6 +41,10 @@ const router = createRouter({
         {// 订单结算页面
           path: '/member/checkout',
           component: () => import('@/views/member/pay/checkout.vue')
+        },
+        {// 支付页面
+          path: '/member/pay',
+          component: () => import('@/views/member/pay/index.vue')
         }
       ]
     },
