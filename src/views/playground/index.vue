@@ -1,7 +1,7 @@
 <script lang="ts" setup name="PlayGround">
 // h 等价于 createVNode
 // createVNode 作用：创建虚拟 DOM (一个 JS 对象, 可以模拟真实 DOM 结构)
-import { h, onMounted, render } from 'vue'
+import { h, onMounted, ref, render } from 'vue'
 // 参数 1：创建的虚拟 DOM 的节点类型，比如 div、h1、a、img
 // 参数 2：虚拟 DOM 拥有的属性，是一个对象
 // 参数 3：虚拟 DOM 节点的内容
@@ -13,10 +13,20 @@ onMounted(() => {
   // 参数 2：真实的 DOM，虚拟 DOM 的挂载点
   render(vNode, document.querySelector('.box')!)
 })
+
+const visible = ref(false)
 </script>
 
 <template>
-  <div class="box"></div>
+  <h1>测试页面</h1>
+  <button @click="visible = true">显示</button>
+  <XtxDialog title="切换收货地址" v-model:visible="visible">
+    <h3>对话框内容</h3>
+    <template #footer>
+      <XtxButton type="gray" style="margin-right: 20px" @click="visible = false">取消</XtxButton>
+      <XtxButton type="primary" @click="visible = false">确认</XtxButton>
+    </template>
+  </XtxDialog>
 </template>
 
 <style scoped lang="less">

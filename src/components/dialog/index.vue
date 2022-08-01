@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-08-01 21:24:04
- * @LastEditTime: 2022-08-01 21:42:05
+ * @LastEditTime: 2022-08-01 22:02:14
  * @LastEditors: Kasumi
  * @Description: 购物车结算页面的对话框
  * @FilePath: \vite-project-xtx\src\components\dialog\index.vue
@@ -24,7 +24,7 @@ const props = defineProps({
 
 // 点击组件内关闭按钮能关闭对话框
 const emit = defineEmits<{
-  (e: 'update:visible', visible: boolean): void
+  (evName: 'update:visible', visible: boolean): void
 }>()
 
 const closeDialog = () => {

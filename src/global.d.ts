@@ -10,6 +10,7 @@ import XtxButton from '@/components/button/index.vue'
 import XtxCheckbox from '@/components/button/index.vue'
 import XtxMessage from '@/components/message/message.vue'
 import XtxDialog from '@/components/dialog/index.vue'
+import XtxSwicth from '@/components/switch/index.vue'
 
 
 declare module 'vue' {
@@ -24,7 +25,8 @@ declare module 'vue' {
     XtxButton: typeof XtxButton
     XtxCheckbox: typeof XtxCheckbox
     XtxMessage: typeof XtxMessage,
-    XtxDialog: typeof XtxDialog
+    XtxDialog: typeof XtxDialog,
+    XtxSwicth: typeof XtxSwicth
   }
 }
 export { }

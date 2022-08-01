@@ -51,6 +51,10 @@ const router = createRouter({
     {
       path: '/login/callback',
       component: () => import('@/views/login/callback.vue')
+    },
+    { // 测试页面
+      path: '/play',
+      component: () => import('@/views/playground/index.vue')
     }
   ],
 })
