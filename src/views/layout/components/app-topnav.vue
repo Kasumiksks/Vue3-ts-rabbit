@@ -1,7 +1,7 @@
 <!--
  * @Author: Kasumi
  * @Date: 2022-07-21 15:56:36
- * @LastEditTime: 2022-07-29 10:59:12
+ * @LastEditTime: 2022-08-02 10:48:22
  * @LastEditors: Kasumi
  * @Description: 公共顶部通栏组件
  * @FilePath: \vite-project-xtx\src\views\layout\components\app-topnav.vue
@@ -28,9 +28,9 @@ const logout = () => {
       <ul>
         <template v-if="user.profile.token">
           <li>
-            <a href="javascript:;"><i class="iconfont icon-user"></i>{{ user.profile.nickname
+            <RouterLink to="/member"><i class="iconfont icon-user"></i>{{ user.profile.nickname
                 || user.profile.account
-            }}</a>
+            }}</RouterLink>
           </li>
           <li><a href="javascript:;" @click="logout">退出登录</a></li>
         </template>
@@ -41,7 +41,9 @@ const logout = () => {
           <li><a href="javascript:;">免费注册</a></li>
         </template>
         <li><a href="javascript:;">我的订单</a></li>
-        <li><a href="javascript:;">会员中心</a></li>
+        <li>
+          <RouterLink to="/member">会员中心</RouterLink>
+        </li>
         <li><a href="javascript:;">帮助中心</a></li>
         <li><a href="javascript:;">关于我们</a></li>
         <li>

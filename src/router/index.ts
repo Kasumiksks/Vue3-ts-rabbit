@@ -49,6 +49,20 @@ const router = createRouter({
         {// 支付结果页面
           path: '/pay/callback',
           component: () => import('@/views/member/pay/callback.vue')
+        },
+        {// 个人中心页面
+          path: '/member',
+          component: () => import('@/views/member/layout/index.vue'),
+          children: [
+            {// 个人中心
+              path: '',
+              component: () => import('@/views/member/home/index.vue')
+            },
+            {// 我的订单
+              path: 'order',
+              component: () => import('@/views/member/order/index.vue')
+            }
+          ]
         }
       ]
     },
