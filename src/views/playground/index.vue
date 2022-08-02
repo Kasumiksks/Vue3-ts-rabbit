@@ -1,36 +1,36 @@
-<script lang="ts" setup name="PlayGround">
-// h 等价于 createVNode
-// createVNode 作用：创建虚拟 DOM (一个 JS 对象, 可以模拟真实 DOM 结构)
-import { h, onMounted, ref, render } from 'vue'
-// 参数 1：创建的虚拟 DOM 的节点类型，比如 div、h1、a、img
-// 参数 2：虚拟 DOM 拥有的属性，是一个对象
-// 参数 3：虚拟 DOM 节点的内容
-// <h1 title="标题" id="box" class="content">我是标题</h1>
-const vNode = h('h1', { title: '标题', id: 'box', className: 'content' }, '我是标题')
+<!--
+ * @Author: Kasumi
+ * @Date: 2022-07-27 15:03:21
+ * @LastEditTime: 2022-08-02 17:02:41
+ * @LastEditors: Kasumi
+ * @Description: 测试页面组件
+ * @FilePath: \vite-project-xtx\src\views\playground\index.vue
+ * 你所热爱的, 就是你的生活
+-->
 
-onMounted(() => {
-  // 参数 1：虚拟 DOM
-  // 参数 2：真实的 DOM，虚拟 DOM 的挂载点
-  render(vNode, document.querySelector('.box')!)
-})
+<script lang="ts" setup>
+import { ref } from 'vue'
 
-const visible = ref(false)
+// 订单状态
+const orderStatus = [
+  { name: 'all', label: '全部订单' },
+  { name: 'unpay', label: '待付款' },
+  { name: 'deliver', label: '待发货' },
+  { name: 'receive', label: '待收货' },
+  { name: 'comment', label: '待评价' },
+  { name: 'complete', label: '已完成' },
+  { name: 'cancel', label: '已取消' },
+]
+const activeName = ref('test1')
 </script>
 
 <template>
-  <h1>测试页面</h1>
-  <button @click="visible = true">显示</button>
-  <XtxDialog title="切换收货地址" v-model:visible="visible">
-    <h3>对话框内容</h3>
-    <template #footer>
-      <XtxButton type="gray" style="margin-right: 20px" @click="visible = false">取消</XtxButton>
-      <XtxButton type="primary" @click="visible = false">确认</XtxButton>
-    </template>
-  </XtxDialog>
+  <xtx-tabs v-model="activeName">
+    <XtxTabsPanel name="all" label="全部">
+      <h1>全部的内容</h1>
+    </XtxTabsPanel>
+    <XtxTabsPanel v-for="item in orderStatus" :key="item.label" :name="item.name" :label="item.label">
+      <h1>{{ item.name }}的内容</h1>
+    </XtxTabsPanel>
+  </xtx-tabs>
 </template>
-
-<style scoped lang="less">
-:deep(.content) {
-  color: red;
-}
-</style>

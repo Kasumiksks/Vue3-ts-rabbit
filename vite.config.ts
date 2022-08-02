@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx' // 引入jsx组件
 
 // 让调试工具显示组件名字
 import vueSetupExtend from 'vite-plugin-vue-setup-extend'
@@ -10,7 +11,7 @@ import path from 'path' // es6语法
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueSetupExtend()],
+  plugins: [vue(), vueSetupExtend(), vueJsx()],
 
   // #2 配置 @ 路径别名
   resolve: {

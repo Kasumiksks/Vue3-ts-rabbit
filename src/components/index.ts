@@ -11,6 +11,8 @@ import XtxCheckbox from '@/components/checkbox/index.vue' // 登录页面的多�
 import XtxMessage from '@/components/message/message.vue' // 消息提示组件
 import XtxDialog from '@/components/dialog/index.vue' // 购物车结算界面的对话框组件
 import XtxSwicth from '@/components/switch/index.vue'
+import XtxTabs from '@/components/tabs/index.vue'
+import XtxTabsPanel from '@/components/tabs/panel.vue'
 
 
 import { App } from 'vue'
@@ -28,5 +30,7 @@ export default {
     app.component(XtxMessage.name, XtxMessage)
     app.component('XtxDialog', XtxDialog)
     app.component(XtxSwicth.name, XtxSwicth)
+    app.component(XtxTabs.name, XtxTabs)
+    app.component(XtxTabsPanel.name, XtxTabsPanel)
   }
 }
