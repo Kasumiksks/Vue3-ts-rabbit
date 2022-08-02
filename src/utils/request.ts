@@ -2,9 +2,10 @@ import Message from '@/components/message'
 import useStore from '@/store'
 import axios, { AxiosError } from 'axios'
 
+export const baseURL = 'https://apipc-xiaotuxian-front.itheima.net/'
 // 备用接口地址: http://pcapi-xiaotuxian-front-devtest.itheima.net/
 const request = axios.create({
-  baseURL: 'http://pcapi-xiaotuxian-front.itheima.net/',
+  baseURL,
   timeout: 5000,
 })
 

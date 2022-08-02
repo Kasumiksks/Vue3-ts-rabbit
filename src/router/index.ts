@@ -45,6 +45,10 @@ const router = createRouter({
         {// 支付页面
           path: '/member/pay',
           component: () => import('@/views/member/pay/index.vue')
+        },
+        {// 支付结果页面
+          path: '/pay/callback',
+          component: () => import('@/views/member/pay/callback.vue')
         }
       ]
     },

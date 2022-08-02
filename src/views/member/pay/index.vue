@@ -1,6 +1,6 @@
 <script setup name="XtxPayPage" lang="ts">
 import { TResponse } from '@/types/data'
-import request from '@/utils/request'
+import request, { baseURL } from '@/utils/request'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { OrderPayInfo } from '@/types/order'
@@ -26,9 +26,12 @@ const formatTime = (time: number) => {
 watch(time, (value) => {
   if (value <= 0) {
     router.replace('/cart')
-    Message.warning('订单已超时，请重新下班')
+    Message.warning('订单已超时，请重新下单')
   }
 })
+
+const redirectUrl = encodeURIComponent('http://www.corho.com:8080/#/pay/callback')
+const payUrl = `${baseURL}pay/aliPay?orderId=${route.query.id}&redirect=${redirectUrl}`
 </script>
 
 <template>
@@ -58,7 +61,7 @@ watch(time, (value) => {
         <div class="item">
           <p>支付平台</p>
           <a class="btn wx" href="javascript:;"></a>
-          <a class="btn alipay" href="javascript:;"></a>
+          <a class="btn alipay" :href="payUrl"></a>
         </div>
         <div class="item">
           <p>支付方式</p>
